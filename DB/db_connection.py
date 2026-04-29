@@ -5,8 +5,6 @@ from contextlib import contextmanager
 
 load_dotenv()
 
-
-
 @contextmanager
 def get_cursor():
     conn = None

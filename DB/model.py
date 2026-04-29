@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS courses (
 """
 
 create_table_enrollments = """
-CREATE TABLE IF NOT EXISTS enrollments (
+CREATE TABLE IF NOT EXISTS enrollments (20
     id SERIAL PRIMARY KEY,
     student_id INT NOT NULL,
     course_id INT NOT NULL,

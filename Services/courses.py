@@ -1,7 +1,7 @@
 from exceptions import CourseNotFoundError
 from DB.db_connection import get_cursor
 
-class Courses:
+class Course:
     def __init__(self, name: str, code: str, duration: int, fees: float, description: str):
         self.name = name
         self.code = code
@@ -36,6 +36,15 @@ class Courses:
             if cursor.rowcount == 0:
                 raise CourseNotFoundError(id)
 
+    @staticmethod
+    def search_course(name):
+        query = """
+            SELECT * FROM courses WHERE course_name LIKE %s
+            """
+        with get_cursor() as cursor:
+            cursor.execute(query, (f"%{name}%",))
+            return cursor.fetchall()
+
 
 
 
@@ -50,4 +59,6 @@ class Courses:
 # print(courses)
 
 # Courses.delete_course(1)
+
+# print(Course.search_course("AI"))
 

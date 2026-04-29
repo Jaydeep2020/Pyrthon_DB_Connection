@@ -39,5 +39,14 @@ class Student:
             if cursor.rowcount == 0:
                 raise StudentNotFoundError(id)
 
+    @staticmethod
+    def search_student(name):
+        query = """
+        SELECT * FROM students WHERE full_name LIKE %s
+        """
+        with get_cursor() as cursor:
+            cursor.execute(query, (f"%{name}%",))
+            return cursor.fetchall()
+
 
 
